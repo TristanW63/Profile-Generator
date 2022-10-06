@@ -2,49 +2,60 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const generateHtml = require('./src/generateHTML');
 
-const runCode = function init() {
-    inquirer
-    .prompt([
+const questions = [
         {
             type: 'input',
-            name: 'Managers name',
+            name: 'name',
             message: 'What is the Team Managers name?'
         },
         {
             type: 'input',
-            name: 'Employee Id',
+            name: 'Id',
             message: 'What is your employee id?'
         },
         {
             type: 'input',
-            name: 'Email address',
+            name: 'Email',
             message: 'What is your employee email?'
         },
         {
-            type: 'input',
-            name: 'Office number',
-            message: 'What is your office number?'
-        },
-        {
             type: 'list',
-            name: 'What kind of employee',
+            name: 'Role',
             message: 'Pick one',
-            choices: ['Engineer', 'Intern', 'Finish building team'],
+            choices: ['Engineer', 'Intern', 'Manager'],
+        },
+    ];
+
+    const team = [];
+    const generateTeam = () => {
+     inquirer
+        .prompt(qs)
+         .then((ans1) => {
+         inquirer
+        .prompt([
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: 'What is their office number?',
+            when: () => ans1.role === 'Manager',
         },
         {
             type: 'input',
-            name: 'jggfkjyu',
-            message: 'What is the Team Managers name?',
-            validate: (answers) => answers.databasetype === 'Intern'
+            name: 'Schoolname',
+            message: 'What is your Schools name?',
+            when: () => ans1.role === 'Intern',
         },
         {
             type: 'input',
-            name: 'hlkggflk',
-            message: 'What is th',
-            // when: (answers) => answers.databasetype === 'Intern'
+            name: 'Engineergit',
+            message: 'What is your Gitbuh username?',
+            when: () => ans1.role === 'Engineer',
         },
-    ])
-    .then((data) =>
-      fs.writeFileSync('index.html', generateHtml(data)));
-}
-runCode();
+        {
+            type: "confirm",
+            message: "Would you like to add another team member?",
+            name: "addMember",
+          },
+        ])
+
+        
