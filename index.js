@@ -34,7 +34,7 @@ const qs = [
         },
     ];
 
-    const team = [];
+   const team = []
     const generateTeam = () => {
      inquirer
         .prompt(qs)
@@ -51,6 +51,7 @@ const qs = [
             type: 'input',
             name: 'school',
             message: 'What is your Schools name?',
+            value: '',
             when: () => ans1.role === 'Intern',
         },
         {
@@ -66,19 +67,19 @@ const qs = [
           },
         ])
 
-        .then((ans2) => {
+        .then((ans2) => { console.log(ans2)
             if(ans1.role === 'Manager') {
-                const manager = new Manager(ans1.name, ans1.id, ans1.email, ans1.role, ans1.officeNumber);
+                const manager = new Manager(ans1.name, ans1.id, ans1.email, ans2.officeNumber);
                 team.push(manager);
             }
 
             if(ans1.role === 'Engineer') {
-                const engineer = new Engineer(ans1.name, ans1.id, ans1.email, ans1.role, ans1.github);
+                const engineer = new Engineer(ans1.name, ans1.id, ans1.email, ans2.github);
                 team.push(engineer);
             }
 
             if(ans1.role === 'Intern') {
-                const intern = new Intern(ans1.name, ans1.id, ans1.email, ans1.role, ans1.school);
+                const intern = new Intern(ans1.name, ans1.id, ans1.email, ans2.school);
                 team.push(intern);
             }
 
