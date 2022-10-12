@@ -1,6 +1,7 @@
 # Team Builder
 
   assets\Untitled_ Oct 11, 2022 9_17 PM.webm
+
   ## Description
   
   - I want to build a team generator and i want to be able to choose wether to add an Engineer, Intern, or Manager. then i am prompted to enter in employee name, employee id, employee email and role. then  i will be prompted to answer following questions related to previous answers. then i am presented with a index.html file displaying all of the input.
